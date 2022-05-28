@@ -1,12 +1,12 @@
-name: Docker Image CI & CD
+name: Docker bind9 Image  CI & CD
 
 on:
   push:
     branches:
-      # - master
+      - master
   pull_request:
     branches:
-      # - master
+      - master
 
 jobs:
   build:
@@ -29,7 +29,8 @@ jobs:
           file: ./Dockerfile
           builder: ${{ steps.buildx.outputs.name }}
           push: true
-          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/bind:latest
-            ${{ secrets.DOCKER_HUB_USERNAME }}/bind:9.16.1-1.994-20220426
+          tags:
+            ${{ secrets.DOCKER_HUB_USERNAME }}/bind:latest
+            # ${{ secrets.DOCKER_HUB_USERNAME }}/bind:9.16.1-1.994-20220426
           # cache-from: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/pvt:profile.webpage.buildcache
           # cache-to: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/pvt:profile.webpage.buildcache,mode=max
