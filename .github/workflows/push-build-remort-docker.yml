@@ -30,7 +30,8 @@ jobs:
           builder: ${{ steps.buildx.outputs.name }}
           push: true
           tags:
-            ${{ secrets.DOCKER_HUB_USERNAME }}/bind:latest
+            ${{ secrets.DOCKER_HUB_USERNAME }}/bind:test
             # ${{ secrets.DOCKER_HUB_USERNAME }}/bind:9.16.1-1.994-20220426
+            # ${{ secrets.DOCKER_HUB_USERNAME }}/bind:9.16.1-1.994-20220426-dev
           # cache-from: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/pvt:profile.webpage.buildcache
           # cache-to: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/pvt:profile.webpage.buildcache,mode=max
