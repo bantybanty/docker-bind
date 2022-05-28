@@ -2,6 +2,10 @@
 
 # sameersbn/bind:9.16.1-20200524
 
+# bantybanty/bind:9.16.1-20220426
+
+- [sameersbn/bind:9.16.1-20200524](#sameersbnbind9161-20200524)
+- [bantybanty/bind:9.16.1-20220426](#bantybantybind9161-20220426)
 - [Introduction](#introduction)
   - [Contributing](#contributing)
   - [Issues](#issues)
@@ -10,6 +14,7 @@
   - [Quickstart](#quickstart)
   - [Command-line arguments](#command-line-arguments)
   - [Persistence](#persistence)
+  - [Reverse Proxying](#reverse-proxying)
 - [Maintenance](#maintenance)
   - [Upgrading](#upgrading)
   - [Shell Access](#shell-access)
@@ -69,7 +74,7 @@ docker run --name bind -d --restart=always \
   sameersbn/bind:9.16.1-20200524
 ```
 
-*Alternatively, you can use the sample [docker-compose.yml](docker-compose.yml) file to start the container using [Docker Compose](https://docs.docker.com/compose/)*
+_Alternatively, you can use the sample [docker-compose.yml](docker-compose.yml) file to start the container using [Docker Compose](https://docs.docker.com/compose/)_
 
 When the container is started the [Webmin](http://www.webmin.com/) service is also started and is accessible from the web browser at https://localhost:10000. Login to Webmin with the username `root` and password `password`. Specify `--env ROOT_PASSWORD=secretpassword` on the `docker run` command to set a password of your choosing.
 
@@ -92,7 +97,7 @@ docker run --name bind -it --rm \
 
 For the BIND to preserve its state across container shutdown and startup you should mount a volume at `/data`.
 
-> *The [Quickstart](#quickstart) command already mounts a volume for persistence.*
+> _The [Quickstart](#quickstart) command already mounts a volume for persistence._
 
 SELinux users should update the security context of the host mountpoint so that it plays nicely with Docker:
 
@@ -105,15 +110,15 @@ chcon -Rt svirt_sandbox_file_t /srv/docker/bind
 
 If you need to run Webmin behind a reverse-proxy such as Nginx, you can tweak the following environment variables:
 
-* `WEBMIN_INIT_SSL_ENABLED`: If Webmin should be served via SSL or not. Defaults to `true`. 
-   If you do the SSL termination at an earlier stage, set this to false.
+- `WEBMIN_INIT_SSL_ENABLED`: If Webmin should be served via SSL or not. Defaults to `true`.
+  If you do the SSL termination at an earlier stage, set this to false.
 
-* `WEBMIN_INIT_REDIRECT_PORT`: The port Webmin is served from. 
-   Set this to your reverse proxy port, such as `443`. Defaults to `10000`.
+- `WEBMIN_INIT_REDIRECT_PORT`: The port Webmin is served from.
+  Set this to your reverse proxy port, such as `443`. Defaults to `10000`.
 
-* `WEBMIN_INIT_REFERERS`: Sets the allowed referrers to Webmin. 
-   Set this to your domain name of the reverse proxy. Example: `mywebmin.example.com`. 
-   Defaults to empty (no referrer).
+- `WEBMIN_INIT_REFERERS`: Sets the allowed referrers to Webmin.
+  Set this to your domain name of the reverse proxy. Example: `mywebmin.example.com`.
+  Defaults to empty (no referrer).
 
 # Maintenance
 
@@ -121,31 +126,31 @@ If you need to run Webmin behind a reverse-proxy such as Nginx, you can tweak th
 
 To upgrade to newer releases:
 
-  1. Download the updated Docker image:
+1. Download the updated Docker image:
 
-  ```bash
-  docker pull sameersbn/bind:9.16.1-20200524
-  ```
+```bash
+docker pull sameersbn/bind:9.16.1-20200524
+```
 
-  2. Stop the currently running image:
+2. Stop the currently running image:
 
-  ```bash
-  docker stop bind
-  ```
+```bash
+docker stop bind
+```
 
-  3. Remove the stopped container
+3. Remove the stopped container
 
-  ```bash
-  docker rm -v bind
-  ```
+```bash
+docker rm -v bind
+```
 
-  4. Start the updated image
+4. Start the updated image
 
-  ```bash
-  docker run -name bind -d \
-    [OPTIONS] \
-    sameersbn/bind:9.16.1-20200524
-  ```
+```bash
+docker run -name bind -d \
+  [OPTIONS] \
+  sameersbn/bind:9.16.1-20200524
+```
 
 ## Shell Access
 
