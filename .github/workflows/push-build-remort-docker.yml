@@ -1,12 +1,12 @@
-name: Docker bind9 Image  CI & CD
+name: Docker bind9-dev Image CI & CD
 
 on:
   push:
     branches:
-      - master
+      - dev
   pull_request:
     branches:
-      - master
+      - dev
 
 jobs:
   build:
