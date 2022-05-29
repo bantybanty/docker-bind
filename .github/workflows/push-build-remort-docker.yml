@@ -26,9 +26,9 @@ jobs:
         with:
           context: ./
           file: ./Dockerfile
+          platforms: linux/amd64,linux/arm64
           builder: ${{ steps.buildx.outputs.name }}
-          push: true
-          # tags: ${{ secrets.DOCKER_HUB_USERNAME }}/bind:dev,${{ secrets.DOCKER_HUB_USERNAME }}/bind:dev-9.16.1-1.994-20220426
-          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/bind:latest,${{ secrets.DOCKER_HUB_USERNAME }}/bind:9.16.1-1.994-20220426
           cache-from: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/bind:buildcache
           cache-to: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/bind:buildcache,mode=max
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/bind:latest,${{ secrets.DOCKER_HUB_USERNAME }}/bind:9.16.1-1.994-20220426
+          push: true
