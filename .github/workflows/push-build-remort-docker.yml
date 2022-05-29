@@ -11,7 +11,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -29,9 +28,7 @@ jobs:
           file: ./Dockerfile
           builder: ${{ steps.buildx.outputs.name }}
           push: true
-          tags:
-            ${{ secrets.DOCKER_HUB_USERNAME }}/bind:test
-            # ${{ secrets.DOCKER_HUB_USERNAME }}/bind:9.16.1-1.994-20220426
-            # ${{ secrets.DOCKER_HUB_USERNAME }}/bind:9.16.1-1.994-20220426-dev
-          # cache-from: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/pvt:profile.webpage.buildcache
-          # cache-to: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/pvt:profile.webpage.buildcache,mode=max
+          # tags: ${{ secrets.DOCKER_HUB_USERNAME }}/bind:dev,${{ secrets.DOCKER_HUB_USERNAME }}/bind:dev-9.16.1-1.994-20220426
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/bind:9.16.1-1.994-20220426,${{ secrets.DOCKER_HUB_USERNAME }}/bind:latest
+          cache-from: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/bind:buildcache
+          cache-to: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/bind:buildcache,mode=max
