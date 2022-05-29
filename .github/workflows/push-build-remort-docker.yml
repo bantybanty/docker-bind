@@ -22,7 +22,7 @@ jobs:
       - name: Docker Setup QEMU
         # You may pin to the exact commit or the version.
         # uses: docker/setup-qemu-action@8b122486cedac8393e77aa9734c3528886e4a1a8
-        uses: docker/setup-qemu-action@v2.0.0
+        uses: docker/setup-qemu-action@v2
         with:
           # QEMU static binaries Docker image (e.g. tonistiigi/binfmt:latest)
           image: tonistiigi/binfmt:latest # optional, default is tonistiigi/binfmt:latest
@@ -36,9 +36,10 @@ jobs:
           context: ./
           file: ./Dockerfile
           builder: ${{ steps.buildx.outputs.name }}
-          push: true
-          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/bind:dev,${{ secrets.DOCKER_HUB_USERNAME }}/bind:dev-9.16.1-1.994-20220426
-          # tags: ${{ secrets.DOCKER_HUB_USERNAME }}/bind:9.16.1-1.991-20220426,${{ secrets.DOCKER_HUB_USERNAME }}/bind:latest
-          platform: linux/arm/v7,linux/arm64/v8,linux/386,linux/amd64
           cache-from: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/bind:buildcache
           cache-to: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/bind:buildcache,mode=max
+          platform: linux/arm/v7,linux/arm64/v8,linux/386,linux/amd64
+          pull: all
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/bind:dev,${{ secrets.DOCKER_HUB_USERNAME }}/bind:dev-9.16.1-1.994-20220426
+          # tags: ${{ secrets.DOCKER_HUB_USERNAME }}/bind:9.16.1-1.991-20220426,${{ secrets.DOCKER_HUB_USERNAME }}/bind:latest
+          push: true
