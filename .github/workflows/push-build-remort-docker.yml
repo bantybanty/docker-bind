@@ -39,6 +39,6 @@ jobs:
           push: true
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/bind:dev,${{ secrets.DOCKER_HUB_USERNAME }}/bind:dev-9.16.1-1.994-20220426
           # tags: ${{ secrets.DOCKER_HUB_USERNAME }}/bind:9.16.1-1.991-20220426,${{ secrets.DOCKER_HUB_USERNAME }}/bind:latest
-          platform: all
+          platform: linux/arm/v7,linux/arm64/v8,linux/386,linux/amd64
           cache-from: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/bind:buildcache
           cache-to: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/bind:buildcache,mode=max
