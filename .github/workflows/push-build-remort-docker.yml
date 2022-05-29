@@ -1,12 +1,12 @@
-name: Docker bind9-dev Image CI & CD
+name: Docker bind9 Image CI & CD
 
 on:
   push:
     branches:
-      - dev
+      - master
   pull_request:
     branches:
-      - dev
+      - master
 
 jobs:
   build:
@@ -28,7 +28,7 @@ jobs:
           file: ./Dockerfile
           builder: ${{ steps.buildx.outputs.name }}
           push: true
-          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/bind:dev,${{ secrets.DOCKER_HUB_USERNAME }}/bind:dev-9.16.1-1.994-20220426
-          # tags: ${{ secrets.DOCKER_HUB_USERNAME }}/bind:9.16.1-1.991-20220426,${{ secrets.DOCKER_HUB_USERNAME }}/bind:latest
+          # tags: ${{ secrets.DOCKER_HUB_USERNAME }}/bind:dev,${{ secrets.DOCKER_HUB_USERNAME }}/bind:dev-9.16.1-1.994-20220426
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/bind:latest,${{ secrets.DOCKER_HUB_USERNAME }}/bind:9.16.1-1.994-20220426
           cache-from: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/bind:buildcache
           cache-to: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/bind:buildcache,mode=max
