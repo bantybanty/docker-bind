@@ -35,11 +35,11 @@ jobs:
         with:
           context: ./
           file: ./Dockerfile
+          # platform: linux/arm/v7,linux/arm64/v8,linux/386,linux/amd64
+          platforms: linux/amd64,linux/arm64,linux/386
           builder: ${{ steps.buildx.outputs.name }}
           cache-from: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/bind:buildcache
           cache-to: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/bind:buildcache,mode=max
-          platform: linux/arm/v7,linux/arm64/v8,linux/386,linux/amd64
-          pull: all
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/bind:dev,${{ secrets.DOCKER_HUB_USERNAME }}/bind:dev-9.16.1-1.994-20220426
           # tags: ${{ secrets.DOCKER_HUB_USERNAME }}/bind:9.16.1-1.991-20220426,${{ secrets.DOCKER_HUB_USERNAME }}/bind:latest
           push: true
