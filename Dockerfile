@@ -6,13 +6,13 @@ RUN apt-get update  \
     && apt-key adv --fetch-keys https://download.webmin.com/jcameron-key.asc \
     && echo "deb http://download.webmin.com/download/repository sarge contrib" >> /etc/apt/sources.list
 
-FROM ubuntu:focal-20220426
+FROM ubuntu:focal-20220531
 
 LABEL maintainer="sameer@damagehead.com"
 
 ENV BIND_USER=bind \
     BIND_VERSION=9.16.1 \
-    WEBMIN_VERSION=1.994 \
+    WEBMIN_VERSION=1.995 \
     DATA_DIR=/data
 
 COPY --from=add-apt-repositories /etc/apt/trusted.gpg /etc/apt/trusted.gpg
