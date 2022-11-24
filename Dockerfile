@@ -1,4 +1,4 @@
-FROM ubuntu:focal-20220826 AS add-apt-repositories
+FROM ubuntu:focal-20221019 AS add-apt-repositories
 
 RUN apt-get update  \
     && DEBIAN_FRONTEND=noninteractive apt-get install -y gnupg curl apt-transport-https apt-utils \
@@ -6,7 +6,7 @@ RUN apt-get update  \
     && apt-key adv --fetch-keys https://download.webmin.com/jcameron-key.asc \
     && echo "deb http://download.webmin.com/download/repository sarge contrib" >> /etc/apt/sources.list
 
-FROM ubuntu:focal-20220826
+FROM ubuntu:focal-20221019
 
 LABEL maintainer="sameer@damagehead.com"
 
