@@ -12,7 +12,7 @@ LABEL maintainer="sameer@damagehead.com"
 
 ENV BIND_USER=bind \
     BIND_VERSION=9.16.1 \
-    WEBMIN_VERSION=2.010 \
+    WEBMIN_VERSION=2.012 \
     DATA_DIR=/data
 
 COPY --from=add-apt-repositories /etc/apt/trusted.gpg /etc/apt/trusted.gpg
