@@ -23,8 +23,8 @@ RUN rm -rf /etc/apt/apt.conf.d/docker-gzip-indexes \
     && apt-get update \
     && DEBIAN_FRONTEND=noninteractive apt-get upgrade -y \
     && DEBIAN_FRONTEND=noninteractive apt-get install -y \
-    bind9=1:${BIND_VERSION}* bind9-host=1:${BIND_VERSION}* dnsutils \
-    webmin=${WEBMIN_VERSION}* \
+        bind9=1:${BIND_VERSION}* bind9-host=1:${BIND_VERSION}* dnsutils \
+        webmin=${WEBMIN_VERSION}* \
     && apt-get autoremove \
     && apt-get autoclean \
     && apt-get clean \
